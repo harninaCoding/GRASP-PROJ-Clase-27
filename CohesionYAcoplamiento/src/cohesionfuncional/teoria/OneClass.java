@@ -6,8 +6,7 @@ public class OneClass {
 	int otro;
 	
 	public int algo() {
-		otro=9;
-		return usable();
+		return usable()*otro;
 		
 	}
 	
