@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="acop02marca.Cliente2" project="CohesionYAcoplamiento" 
+    file="/CohesionYAcoplamiento/src/acop02marca/Cliente2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="acop02marca.Pedido2" project="CohesionYAcoplamiento" 
+    file="/CohesionYAcoplamiento/src/acop02marca/Pedido2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="324" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="acop02marca.Cliente" project="CohesionYAcoplamiento" 
+    file="/CohesionYAcoplamiento/src/acop02marca/Cliente.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="57" width="104" x="519" y="78"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="acop02marca.Pedido" project="CohesionYAcoplamiento" 
+    file="/CohesionYAcoplamiento/src/acop02marca/Pedido.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="678" y="309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="acop02marca.DatosFiscales" project="CohesionYAcoplamiento" 
+    file="/CohesionYAcoplamiento/src/acop02marca/DatosFiscales.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="470" y="308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="6">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="7" name="cliente"/>      
+      <multiplicity id="8" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="9">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="10" name="datosFiscales"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="13" name="datosFiscales"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
