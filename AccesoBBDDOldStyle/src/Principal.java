@@ -35,9 +35,16 @@ public class Principal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		// Ejecutar la consulta concreta
 		try {
+//			conjuntoResultados = instruccion.executeQuery("SELECT * FROM persona");
 			conjuntoResultados = instruccion.executeQuery("SELECT * FROM persona");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
