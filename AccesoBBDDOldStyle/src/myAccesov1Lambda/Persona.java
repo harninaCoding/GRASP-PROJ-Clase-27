@@ -1,3 +1,4 @@
+package myAccesov1Lambda;
 import java.util.Objects;
 
 public class Persona {

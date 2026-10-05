@@ -1,21 +1,25 @@
+package myAccesov1SinNombrador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlmacenBBDDJDBC {
+public class AlmacenBBDDJDBC<T> {
 	private static String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
 	private String URL_BASEDATOS;
 	private Connection conexion = null;
+	private Mapper<T> mapper;
+	private Class<T> clase;
 
-	public AlmacenBBDDJDBC(String uRL_BASEDATOS, String user, String password) {
+	public AlmacenBBDDJDBC(String uRL_BASEDATOS, String user, 
+			String password,Mapper<T> mapper,Class<T> clase) {
 		super();
 		URL_BASEDATOS = uRL_BASEDATOS;
-
+		this.mapper=mapper;
+		this.clase=clase;
 		try {
 			conexion = DriverManager.getConnection(URL_BASEDATOS, user, password);
 		} catch (SQLException e) {
@@ -32,7 +36,7 @@ public class AlmacenBBDDJDBC {
 		}
 	}
 
-	public List<Persona> getAll() {
+	public List<T> getAll() {
 		// Una vez conectados pedimos al sgbd que genere una estructura
 		// donde albergar la sentencia
 		ResultSet conjuntoResultados = null;
@@ -45,17 +49,16 @@ public class AlmacenBBDDJDBC {
 		
 		// Ejecutar la consulta concreta
 		try {
-			conjuntoResultados = instruccion.executeQuery("SELECT * FROM persona");
+			conjuntoResultados = instruccion.executeQuery("SELECT * FROM "+clase.getSimpleName());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			ArrayList<Persona> retorno=new ArrayList();
+			ArrayList<T> retorno=new ArrayList();
 			System.out.println();
 			while (conjuntoResultados.next()) {
-				Persona persona=new Persona(conjuntoResultados.getInt(1),conjuntoResultados.getString(2),conjuntoResultados.getString(3));
-				retorno.add(persona);
+				mapper.map(conjuntoResultados).ifPresent(retorno::add);
 			}
 			return retorno;
 		} catch (SQLException e) {
