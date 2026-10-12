@@ -16,12 +16,14 @@ public class AlmacenBBDDJDBC<T, K> {
 	private Connection conexion = null;
 	private Mapper<T> mapper;
 	private Class<T> clase;
+	private String fieldName;
 
-	public AlmacenBBDDJDBC(String uRL_BASEDATOS, String user, String password, Mapper<T> mapper, Class<T> clase) {
+	public AlmacenBBDDJDBC(String uRL_BASEDATOS, String user, String password, Mapper<T> mapper, Class<T> clase, String fieldName) {
 		super();
 		URL_BASEDATOS = uRL_BASEDATOS;
 		this.mapper = mapper;
 		this.clase = clase;
+		this.fieldName=fieldName;
 		try {
 			conexion = DriverManager.getConnection(URL_BASEDATOS, user, password);
 		} catch (SQLException e) {
@@ -39,17 +41,24 @@ public class AlmacenBBDDJDBC<T, K> {
 	}
 
 	public Optional<T> getByKey(K key) {
-		String sql = "Select * FROM " + clase.getSimpleName() + "Where " + fieldName + " like ?";
-		 try (PreparedStatement statement = conexion.prepareStatement(sql)) {
-			 statement.setObject(1, key);
-		 }
+		String sql = "Select * FROM " + clase.getSimpleName() + " Where " + fieldName + " like ?";
+		try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+			statement.setObject(1, key);
+			try (ResultSet rs = statement.executeQuery()) {
+				if (rs.next()) {
+					return mapper.map(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 return Optional.empty();
 	}
 
 	public List<T> getAll() {
 		ArrayList<T> retorno = new ArrayList();
 		try (Statement instruccion = conexion.createStatement();
-			ResultSet conjuntoResultados = instruccion.executeQuery("SELECT * FROM " + clase.getSimpleName());
-			) {
+				ResultSet conjuntoResultados = instruccion.executeQuery("SELECT * FROM " + clase.getSimpleName());) {
 			while (conjuntoResultados.next()) {
 				mapper.map(conjuntoResultados).ifPresent(retorno::add);
 			}

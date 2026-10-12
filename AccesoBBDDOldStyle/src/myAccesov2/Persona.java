@@ -1,7 +1,7 @@
 package myAccesov2;
 import java.util.Objects;
 
-public class Persona {
+public class Persona implements Keyable<Integer>{
 	private Integer id;
 	private String nombre;
 	private String apellidos;
@@ -58,6 +58,11 @@ public class Persona {
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
+	}
+
+	@Override
+	public Integer getKey() {
+		return id;
 	}
 
 }

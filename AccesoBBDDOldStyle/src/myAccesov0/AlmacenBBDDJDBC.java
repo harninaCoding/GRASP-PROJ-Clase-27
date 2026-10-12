@@ -55,7 +55,11 @@ public class AlmacenBBDDJDBC {
 			ArrayList<Persona> retorno=new ArrayList();
 			System.out.println();
 			while (conjuntoResultados.next()) {
-				Persona persona=new Persona(conjuntoResultados.getInt(1),conjuntoResultados.getString(2),conjuntoResultados.getString(3));
+				Persona persona=
+						new Persona(
+								conjuntoResultados.getInt(1),
+								conjuntoResultados.getString(2),
+								conjuntoResultados.getString(3));
 				retorno.add(persona);
 			}
 			return retorno;
