@@ -17,7 +17,7 @@ public abstract class DaoFactory {
     // DAOs del campamento
 //    public abstract ActividadDAO getActividadDAO();
 //    public abstract CabanaDAO getCabanaDAO();
-//    public abstract GrupoDAO getGrupoDAO();
+    public abstract GrupoDAO getGrupoDAO();
     public abstract MonitorDAO getMonitorDAO();
 //    public abstract TiendaDAO getTiendaDAO();
 //    public abstract NinoEsoDAO getNinoEsoDAO();
