@@ -1,6 +1,8 @@
 package modelo.ImplDAO;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import handler.CollectionHandler;
@@ -46,4 +48,11 @@ public class ActividadDAOJDBC implements ActividadDAO {
         }
         return actividad;
     }
+
+	@Override
+	public Collection<Actividad> findAllById(List<String> codigosActividades) {
+		String parametros = String.join(",", Collections.nCopies(codigosActividades.size(), "?"));
+		 String sql = "SELECT codigo_actividad, nombre_actividad, descripcion FROM actividad WHERE codigo_actividad IN (" + parametros + ")";
+	        return accessJdbc.executeQuery(sql, new CollectionHandler<>(mapper), codigosActividades.toArray());
+	}
 }
